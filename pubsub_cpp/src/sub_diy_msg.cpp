@@ -16,10 +16,10 @@ public:
 
 private:
     void student_topic_callback(const diy_interface::msg::Student &msg) const {
-        RCLCPP_INFO(this->get_logger(), "i received student: %s, %d", msg.name.c_str(), msg.age);
+        RCLCPP_INFO(this->get_logger(), "i received student in cpp: %s, %d", msg.name.c_str(), msg.age);
     }
     void sphere_topic_callback(const diy_interface::msg::Sphere &msg) const {
-        RCLCPP_INFO(this->get_logger(), "i received sphere: (%f, %f, %f), %f", 
+        RCLCPP_INFO(this->get_logger(), "i received sphere in cpp: (%f, %f, %f), %f", 
             msg.center.x, msg.center.y, msg.center.z, msg.radius);
     }
 

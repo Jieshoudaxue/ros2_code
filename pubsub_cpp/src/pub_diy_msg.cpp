@@ -19,7 +19,7 @@ private:
         auto stu_msg = diy_interface::msg::Student();
         stu_msg.name = students_[count_ % students_.size()].first;
         stu_msg.age = students_[count_ % students_.size()].second;
-        RCLCPP_INFO(this->get_logger(), "publishing student: %s, %d", stu_msg.name.c_str(), stu_msg.age);
+        RCLCPP_INFO(this->get_logger(), "publishing student in cpp: %s, %d", stu_msg.name.c_str(), stu_msg.age);
         pub_student_->publish(stu_msg);
 
         auto sphere_msg = diy_interface::msg::Sphere();
@@ -27,7 +27,7 @@ private:
         sphere_msg.center.y = std::get<1>(spheres_[count_ % spheres_.size()].first);
         sphere_msg.center.z = std::get<2>(spheres_[count_ % spheres_.size()].first);
         sphere_msg.radius = spheres_[count_ % spheres_.size()].second;
-        RCLCPP_INFO(this->get_logger(), "publishing sphere: (%f, %f, %f), %f", 
+        RCLCPP_INFO(this->get_logger(), "publishing sphere in cpp: (%f, %f, %f), %f", 
             sphere_msg.center.x, sphere_msg.center.y, sphere_msg.center.z, sphere_msg.radius);
         pub_sphere_->publish(sphere_msg);
 
