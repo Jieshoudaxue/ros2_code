@@ -9,11 +9,11 @@ from rclpy.qos import QoSProfile, QoSReliabilityPolicy, QoSHistoryPolicy
 
 class Publisher(Node):
     def __init__(self):
-        super().__init__('test_publisher')
+        super().__init__('test_qos_publisher')
 
         qos_profile = QoSProfile(
-            reliability = QoSReliabilityPolicy.RELIABLE,
-            # reliability = QoSReliabilityPolicy.BEST_EFFORT,
+            # reliability = QoSReliabilityPolicy.RELIABLE,  # default is reliable
+            reliability = QoSReliabilityPolicy.BEST_EFFORT,
             history = QoSHistoryPolicy.KEEP_LAST,
             depth=1
         )

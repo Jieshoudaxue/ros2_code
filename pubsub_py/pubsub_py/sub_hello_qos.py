@@ -9,7 +9,7 @@ from rclpy.qos import QoSProfile, QoSReliabilityPolicy, QoSHistoryPolicy
 
 class Subscriber(Node):
     def __init__(self):
-        super().__init__('test_subscriber')
+        super().__init__('test_qos_subscriber')
 
         qos_profile = QoSProfile(
             # reliability = QoSReliabilityPolicy.RELIABLE,
