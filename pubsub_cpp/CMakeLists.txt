@@ -19,6 +19,12 @@ ament_target_dependencies(talker rclcpp std_msgs)
 add_executable(listener src/subscriber.cpp)
 ament_target_dependencies(listener rclcpp std_msgs)
 
+add_executable(talker_qos src/pub_hello_qos.cpp)
+ament_target_dependencies(talker_qos rclcpp std_msgs)
+
+add_executable(listener_qos src/sub_hello_qos.cpp)
+ament_target_dependencies(listener_qos rclcpp std_msgs)
+
 add_executable(talker_diy src/pub_diy_msg.cpp)
 ament_target_dependencies(talker_diy rclcpp diy_interface)
 
@@ -29,6 +35,8 @@ ament_target_dependencies(listener_diy rclcpp diy_interface)
 install(TARGETS
   talker
   listener
+  talker_qos
+  listener_qos
   talker_diy
   listener_diy
   DESTINATION lib/${PROJECT_NAME})

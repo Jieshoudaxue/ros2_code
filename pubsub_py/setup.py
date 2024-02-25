@@ -26,7 +26,9 @@ setup(
             'talker = pubsub_py.publisher:main',
             'talker_diy = pubsub_py.pub_diy_msg:main',
             'listener = pubsub_py.subscriber:main',
-            'listener_diy = pubsub_py.sub_diy_msg:main'
+            'listener_diy = pubsub_py.sub_diy_msg:main',
+            'talker_qos = pubsub_py.pub_hello_qos:main',
+            'listener_qos = pubsub_py.sub_hello_qos:main'
         ],
     },
 )
