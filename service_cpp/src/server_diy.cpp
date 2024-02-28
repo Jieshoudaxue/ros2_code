@@ -8,10 +8,10 @@ class ServiceServer : public rclcpp::Node
 public:
     ServiceServer() : Node("service_server") {
         server_ = this->create_service<diy_interface::srv::QuestionAndAnswer>("question_and_answer", 
-            std::bind(&ServiceServer::add_callback, this, std::placeholders::_1, std::placeholders::_2));
+            std::bind(&ServiceServer::answer_callback, this, std::placeholders::_1, std::placeholders::_2));
     }
 private:
-    void add_callback(const std::shared_ptr<diy_interface::srv::QuestionAndAnswer::Request> request,
+    void answer_callback(const std::shared_ptr<diy_interface::srv::QuestionAndAnswer::Request> request,
                     std::shared_ptr<diy_interface::srv::QuestionAndAnswer::Response> response) {
         response->answer = "I'm fine, thank you.";
         RCLCPP_INFO(this->get_logger(), "[cpp server] receive: %s, return: %s", 
