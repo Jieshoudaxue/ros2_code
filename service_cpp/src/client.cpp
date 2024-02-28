@@ -30,7 +30,7 @@ public:
         auto result = client_->async_send_request(request);
         if (rclcpp::spin_until_future_complete(this->get_node_base_interface(), result) == 
                                                         rclcpp::FutureReturnCode::SUCCESS) {
-            RCLCPP_INFO(this->get_logger(), "client: send %ld(a) + %ld(b), receive %ld(sum)", 
+            RCLCPP_INFO(this->get_logger(), "cpp client: send %ld(a) + %ld(b), receive %ld(sum)", 
                                                     request->a, request->b, result.get()->sum);
         } else {
             RCLCPP_ERROR(this->get_logger(), "Failed to call service add_two_ints");

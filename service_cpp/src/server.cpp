@@ -14,7 +14,7 @@ private:
     void add_callback(const std::shared_ptr<example_interfaces::srv::AddTwoInts::Request> request,
                     std::shared_ptr<example_interfaces::srv::AddTwoInts::Response> response) {
         response->sum = request->a + request->b;
-        RCLCPP_INFO(this->get_logger(), "server: receive %ld(a) + %ld(b), send %ld(sum)", request->a, request->b, response->sum);
+        RCLCPP_INFO(this->get_logger(), "cpp server: receive %ld(a) + %ld(b), send %ld(sum)", request->a, request->b, response->sum);
     }
 
 private:
