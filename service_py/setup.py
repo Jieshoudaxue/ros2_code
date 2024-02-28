@@ -24,7 +24,9 @@ setup(
     entry_points={
         'console_scripts': [
             'server = service_py.server:main',
-            'client = service_py.client:main'
+            'client = service_py.client:main',
+            'server_diy = service_py.server_diy:main',
+            'client_diy = service_py.client_diy:main'            
         ],
     },
 )
