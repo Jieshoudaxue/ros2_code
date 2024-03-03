@@ -8,7 +8,7 @@
 
 class MiniParam : public rclcpp::Node {
 public:
-    MiniParam() : Node("test_param_cpp") {
+    MiniParam() : Node("param_monitor_cpp") {
         // set param description
         auto param_desc = rcl_interfaces::msg::ParameterDescriptor{};
         param_desc.description = "This parameter is mine!";
