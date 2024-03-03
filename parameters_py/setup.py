@@ -23,7 +23,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'param_test = parameters_py.param_test:main'
+            'param_test = parameters_py.param_test:main',
+            'param_monitor = parameters_py.param_monitor:main'
         ],
     },
 )

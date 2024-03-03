@@ -12,8 +12,12 @@ find_package(rclcpp REQUIRED)
 add_executable(param_test src/param_test.cpp)
 ament_target_dependencies(param_test rclcpp)
 
+add_executable(param_monitor src/param_monitor.cpp)
+ament_target_dependencies(param_monitor rclcpp)
+
 install(TARGETS
   param_test
+  param_monitor
   DESTINATION lib/${PROJECT_NAME})
 
 install(DIRECTORY
