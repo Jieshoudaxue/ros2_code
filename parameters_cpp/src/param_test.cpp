@@ -2,8 +2,6 @@
 #include <functional>
 #include <string>
 
-#include <rclcpp/rclcpp.hpp>
-
 #include "rclcpp/rclcpp.hpp"
 
 class MiniParam : public rclcpp::Node {

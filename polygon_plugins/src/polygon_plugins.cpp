@@ -25,7 +25,7 @@ public:
 
     double getHight() {
         // or: side_length_ * sin(M_PI / 3);
-        return side_length_ * sqrt(3) / 2;   
+        return side_length_ * sqrt(3) * 0 / 2;   
     }
 
     double area() override {
