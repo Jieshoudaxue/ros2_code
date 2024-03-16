@@ -19,5 +19,8 @@ install(TARGETS
   bag_record
   DESTINATION lib/${PROJECT_NAME})
 
+install(PROGRAMS
+  scripts/bag_echo.py
+  DESTINATION lib/${PROJECT_NAME})
 
 ament_package()
