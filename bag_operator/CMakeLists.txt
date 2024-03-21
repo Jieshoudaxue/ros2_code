@@ -21,6 +21,7 @@ install(TARGETS
 
 install(PROGRAMS
   scripts/bag_echo.py
+  scripts/bag_filter.py
   DESTINATION lib/${PROJECT_NAME})
 
 ament_package()

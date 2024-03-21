@@ -17,7 +17,7 @@ class BagEcho(object):
         self._reader = rosbag2_py.SequentialReader()
 
     def echo_bag(self):
-        # 以sqlite3格式打开rosbag
+        # 以sqlite3格式打开ros2 bag
         storage_options = rosbag2_py._storage.StorageOptions(uri=self._bag, storage_id='sqlite3')
         converter_options = rosbag2_py._storage.ConverterOptions('', '')
         self._reader.open(storage_options, converter_options)
@@ -53,7 +53,7 @@ class BagEcho(object):
             logging.info("topic %s msg cnt is %d" %(topic_name, msg_cnts[topic_name]))
 
 def main():
-  parser = argparse.ArgumentParser(description="echo rosbag depends topic")
+  parser = argparse.ArgumentParser(description="echo ros2 bag topic")
   parser.add_argument("-b", "--bag", type=str, required=True, help="specify rosbag")
   parser.add_argument("-t", "--topics", nargs="+", type=str, help="specify topic")
   # extra_args可以让-t指定多个topic，并使用argparse.SUPPRESS隐藏extra_args参数
