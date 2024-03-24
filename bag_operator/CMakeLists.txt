@@ -15,8 +15,14 @@ target_include_directories(bag_record PUBLIC
   ${CMAKE_CURRENT_SOURCE_DIR}/include)
 ament_target_dependencies(bag_record rclcpp rosbag2_cpp)
 
+add_executable(bag_play src/bag_play.cpp)
+target_include_directories(bag_play PUBLIC
+  ${CMAKE_CURRENT_SOURCE_DIR}/include)
+ament_target_dependencies(bag_play rclcpp rosbag2_cpp)
+
 install(TARGETS 
   bag_record
+  bag_play
   DESTINATION lib/${PROJECT_NAME})
 
 install(PROGRAMS
