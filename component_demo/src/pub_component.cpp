@@ -15,8 +15,6 @@ namespace component_demo
 
 PubComponent::PubComponent(const rclcpp::NodeOptions & options)
                             : Node("pub_component", options), count_(0) {
-    // 设置 msg 内容足够长，可以比较出合并进程与分离进程的性能区别
-    // 设置 msg 内容足够长，可以比较出合并进程使用 DDS 通信与使用 intra-process 通信的性能区别
     msg_inner_ = "从前有位程序员，名叫杰克。杰克在一家知名科技公司工作，以出神入化的编程技巧而闻名。"
                 "可即便是杰克，也有他的死穴—他没有咖啡就无法编码。"
                 "某天早上，杰克来到了办公室，兴冲冲地准备开始新的一天。"
@@ -34,8 +32,8 @@ PubComponent::PubComponent(const rclcpp::NodeOptions & options)
                 "显然，代码并不能真正取代咖啡。"
                 "杰克失望极了，但他还是决定去办公楼下的咖啡店买一杯咖啡来解决问题。。。。";
     pub_msg_ = create_publisher<std_msgs::msg::String>("hello_msg", 10);
-
-    timer_ = create_wall_timer(std::chrono::seconds(1), std::bind(&PubComponent::on_timer, this));
+    // 帧率设置为 200 hz，较高的帧率，可以比较明显的看出合并进程与分离进程负载的变化
+    timer_ = create_wall_timer(std::chrono::milliseconds(5), std::bind(&PubComponent::on_timer, this));
 }
 
 void PubComponent::on_timer() {

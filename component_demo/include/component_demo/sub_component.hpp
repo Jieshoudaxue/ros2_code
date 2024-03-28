@@ -7,7 +7,7 @@
 
 namespace component_demo
 {
-
+// 注释请查看 pub_component.hpp
 class SubComponent : public rclcpp::Node
 {
 public:

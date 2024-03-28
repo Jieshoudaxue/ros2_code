@@ -4,7 +4,8 @@ from launch_ros.descriptions import ComposableNode
 
 
 def generate_launch_description():
-    """Generate launch description with multiple components."""
+    # 两个组件放在两个 container 里，也就是分别在两个进程，这种状况比较容易排查问题，当然负载也要高一些
+    # 通常情况下，开发阶段使用这种方式，生产环境使用合并进程的方式
     pub_container = ComposableNodeContainer(
             name='pub_container',
             namespace='',
