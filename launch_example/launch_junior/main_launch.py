@@ -17,7 +17,7 @@ def generate_launch_description():
             PythonLaunchDescriptionSource([
                 PathJoinSubstitution([
                     FindPackageShare('launch_example'),
-                    'launch',
+                    'launch_junior',
                     'substitution_launch.py'
                 ])
             ]),
