@@ -105,19 +105,20 @@ def generate_launch_description():
         turtlesim_ns_launch_arg,
         use_provided_red_launch_arg,
         new_background_r_launch_arg,
-        # 启动 turtlesim 节点
+        # 启动 turtlesim 节点，预留五秒等待时间，不然后面的执行将报错
+        # 五秒是粗略估计，并不准确，完美的解决方案是 event handler
         turtlesim_node,
-        # 3秒后生成一个乌龟，并把背景色改为护眼绿
+        # 5秒后，调用spawn服务，生成一个乌龟，并把背景色改为护眼绿
         TimerAction(
-            period=3.0,
+            period=5.0,
             actions=[spawn_turtle,
                     change_background_r,
                     change_background_g,
                     change_background_b],
         ),
-        # 5秒后，如果main_launch.py传入的参数符合条件，则改变背景颜色的red值
+        # 8秒后，如果main_launch.py传入的参数符合条件，则改变背景颜色的red值
         TimerAction(
-            period=5.0,
+            period=8.0,
             actions=[change_background_r_conditioned],
         )        
     ])
