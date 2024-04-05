@@ -12,7 +12,9 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
-        (os.path.join('share', package_name, 'launch_junior'), glob(os.path.join('launch_junior', '*_launch.py')))        
+        (os.path.join('share', package_name, 'launch_junior'), glob(os.path.join('launch_junior', '*_launch.py'))),
+        (os.path.join('share', package_name, 'launch_senior'), glob(os.path.join('launch_senior', '*_launch.py'))),
+        (os.path.join('share', package_name, 'launch_senior'), glob(os.path.join('launch_senior', '*.yaml')))
     ],
     install_requires=['setuptools'],
     zip_safe=True,
