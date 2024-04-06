@@ -29,16 +29,10 @@ def generate_launch_description():
    
    # 启动第二个窗口，其背景色通过加载全局参数文件配置成护眼绿
    # 在下面的 mimic_node 的作用下 ，这个窗口的乌龟将与第一个窗口的turtle2同步运动
-   turtlesim_world_2_param = os.path.join(
-      get_package_share_directory('launch_example'),
-      'config',
-      'turtlesim_param.yaml'
-      )
-   turtlesim_world_2 = Node(
-         package='turtlesim',
-         executable='turtlesim_node',
-         name='sim',
-         parameters=[turtlesim_world_2_param]
+   turtlesim_world_2 = IncludeLaunchDescription(
+      PythonLaunchDescriptionSource([os.path.join(
+         get_package_share_directory('launch_example'), 'launch_example'),
+         '/turtlesim_world_2_launch.py'])
       )
    # 为了防止两个窗口的节点名字冲突，这里使用 PushRosNamespace 来给第二个窗口的节点加上一个命名空间名turtlesim2
    # PushRosNamespace可以在不修改launch文件的情况下，给节点加上命名空间，避免重名，非常高效
@@ -60,9 +54,9 @@ def generate_launch_description():
       )
    # 针对第一个窗口，启动rviz，监听两个turtle的TF信息，并可视化显示
    turtlesim_world_1_rviz_config = os.path.join(
-      get_package_share_directory('turtle_tf2_py'),
-      'rviz',
-      'turtle_rviz.rviz'
+      get_package_share_directory('launch_example'),
+      'config',
+      'turtle.rviz'
       )
    turtlesim_world_1_rviz_node = Node(
          package='rviz2',
