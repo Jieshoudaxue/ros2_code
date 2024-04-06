@@ -99,6 +99,7 @@ def generate_launch_description():
     # 上面的代码注释同 substitution_launch.py，我们重点解释下面的 event handler
     ########################################################################
 
+    # Tips: launch 的 event handler机制
     # ROS2 launch 的事件处理器(event handler)是一种机制，它允许用户自定义对特定事件的响应行为。
     # 当进程状态发生变化时（例如，节点启动、节点关闭、进程死亡等），这些变化会触发自定义的响应行为。
     # 使用事件处理器，launch 系统具备了高度的灵活性和可扩展性，使得开发者可以根据不同的运行时情况和需求，定制处理流程和逻辑。
@@ -162,7 +163,7 @@ def generate_launch_description():
                 target_action=turtlesim_node,
                 # on_exit 是一个列表，用来定义进程退出后的响应行为
                 # 这里的行为是打印一条日志，然后发出 Shutdown 系统关闭事件
-                # 请重点关注获取环境变量的的方式：EnvironmentVariable
+                # Tips: launch 中获取环境变量的方法
                 on_exit=[
                     LogInfo(msg=(EnvironmentVariable(name='USER'),
                             ' closed the turtlesim window')),

@@ -20,6 +20,7 @@ def generate_launch_description():
     use_provided_red = LaunchConfiguration('use_provided_red')
     new_background_r = LaunchConfiguration('new_background_r')
 
+    # Tips：launch 文件申明可传入参数的方法
     # 声明命名空间配置, 是否使用指定红色值, 新的红色背景值的启动参数, 分别对应三个配置变量
     # 使用 DeclareLaunchArgument 申明的启动参数, 允许从外部为这些参数提供值。
     # 在这个例子中, 这三个参数将从 main_launch.py 中传入
@@ -43,6 +44,7 @@ def generate_launch_description():
         executable='turtlesim_node',
         name='sim'
     )
+    # Tips：launch 文件中调用命令行方法
     # 实例化一个ExecuteProcess, 用于在3秒后生成一个乌龟
     spawn_turtle = ExecuteProcess(
         cmd=[[

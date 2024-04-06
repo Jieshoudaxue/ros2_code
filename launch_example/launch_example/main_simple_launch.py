@@ -11,13 +11,14 @@ def generate_launch_description():
     colors = {
         'background_r': '240'
     }
+    # Tips：launch 文件包含
     # 通过引用launch_example 包内的 launch 文件夹下的 substitution_launch.py 来启动
     return LaunchDescription([
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([
                 PathJoinSubstitution([
                     FindPackageShare('launch_example'),
-                    'launch_junior',
+                    'launch_example',
                     'substitution_launch.py'
                 ])
             ]),

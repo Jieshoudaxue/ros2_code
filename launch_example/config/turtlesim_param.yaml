@@ -1,4 +1,6 @@
+# 使用通配符匹配所有节点
 /**:
+   # 注意这里是两个下划线"__"
    ros__parameters:
       background_r: 199
       background_g: 237
