@@ -162,6 +162,7 @@ def generate_launch_description():
                 target_action=turtlesim_node,
                 # on_exit 是一个列表，用来定义进程退出后的响应行为
                 # 这里的行为是打印一条日志，然后发出 Shutdown 系统关闭事件
+                # 请重点关注获取环境变量的的方式：EnvironmentVariable
                 on_exit=[
                     LogInfo(msg=(EnvironmentVariable(name='USER'),
                             ' closed the turtlesim window')),
