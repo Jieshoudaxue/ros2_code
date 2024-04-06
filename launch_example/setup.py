@@ -13,8 +13,8 @@ setup(
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
         (os.path.join('share', package_name, 'launch_example'), glob(os.path.join('launch_example', '*_launch.py'))),
-        (os.path.join('share', package_name, 'launch_example'), glob(os.path.join('config', '*.yaml'))),
-        (os.path.join('share', package_name, 'launch_example'), glob(os.path.join('config', '*.rviz')))        
+        (os.path.join('share', package_name, 'config'), glob(os.path.join('config', '*.yaml'))),
+        (os.path.join('share', package_name, 'config'), glob(os.path.join('config', '*.rviz')))
     ],
     install_requires=['setuptools'],
     zip_safe=True,
