@@ -10,7 +10,9 @@ def generate_launch_description():
             name='my_container',
             namespace='',
             package='rclcpp_components',
-            executable='component_container',   # component_container_mt
+            # component_container 是单线程容器，容器内所有组件共享一个线程，没有并发问题，但是效率低
+            # component_container_mt 是多线程容器，容器内每个组件都有自己的线程，可以并发处理，效率高，但需要考虑并发风险
+            executable='component_container',
             composable_node_descriptions=[
                 ComposableNode(
                     package='component_demo',
