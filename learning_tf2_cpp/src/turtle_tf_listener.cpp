@@ -37,6 +37,7 @@ void TurtleTfListener::on_timer() {
         auto request = std::make_shared<turtlesim::srv::Spawn::Request>();
         request->x = 5.0;
         request->y = 5.0;
+        request->theta = 0.0;
         request->name = "turtle2";
 
         using ServiceResponseFuture = rclcpp::Client<turtlesim::srv::Spawn>::SharedFuture;
