@@ -73,11 +73,7 @@ def main(args=None):
     rclpy.init(args=args)
 
     node = TurtleTfListener("turtle_tf2_listener")
-    
-    node.get_logger().info("before spin...")
     rclpy.spin(node)
-
-    node.get_logger().info("before shutdown...")
 
     rclpy.shutdown()
     
