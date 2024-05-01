@@ -24,6 +24,10 @@ TurtleTfListener::TurtleTfListener(const rclcpp::NodeOptions & options)
     RCLCPP_INFO(this->get_logger(), "TurtleTfListener has been started");
 }
 
+// TF 监听器的逻辑是先生成一个小乌龟2，然后定时订阅在小乌龟2坐标系下，目标小乌龟的 TF 信息，
+// 拿到 TF 信息后，计算得到小乌龟2的 Twist 的控制命令，然后以 1Hz 的频率发布到小乌龟2的 cmd_vel 话题上。
+// Twist 的理解，参考：https://blog.csdn.net/cy1641395022/article/details/131236155
+// 计算过程的理解，参考：https://blog.csdn.net/cy1641395022/article/details/131236155
 void TurtleTfListener::on_timer() {
     if (false == turtle_spawning_service_ready_) {
         if (false == spawn_turtle_client_->service_is_ready()) {
@@ -35,8 +39,8 @@ void TurtleTfListener::on_timer() {
 
     if (false == turtle_spawned_) {
         auto request = std::make_shared<turtlesim::srv::Spawn::Request>();
-        request->x = 5.0;
-        request->y = 5.0;
+        request->x = 2.0;
+        request->y = 2.0;
         request->theta = 0.0;
         request->name = "turtle2";
 
