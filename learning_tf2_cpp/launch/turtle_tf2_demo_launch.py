@@ -1,3 +1,5 @@
+import os
+from ament_index_python.packages import get_package_share_directory
 import launch
 from launch_ros.actions import ComposableNodeContainer
 from launch_ros.descriptions import ComposableNode
@@ -40,6 +42,18 @@ def generate_launch_description():
             output='screen',
     )
 
+    turtlesim_world_rviz_config = os.path.join(
+        get_package_share_directory('learning_tf2_cpp'),
+        'config',
+        'turtle_tf.rviz'
+    )
+    turtlesim_world_rviz_node = Node(
+        package='rviz2',
+        executable='rviz2',
+        name='rviz2',
+        arguments=['-d', turtlesim_world_rviz_config]
+    )
+
     turtle2_listen_turtle1 = ComposableNodeContainer(
             name='turtle2_listen_turtle1',
             namespace='',
@@ -55,4 +69,4 @@ def generate_launch_description():
             output='screen',
     )
 
-    return launch.LaunchDescription([turtlesim_node, turtle1_tf_broadcaster, turtle2_tf_broadcaster, turtle2_listen_turtle1])
+    return launch.LaunchDescription([turtlesim_node, turtle1_tf_broadcaster, turtle2_tf_broadcaster, turtlesim_world_rviz_node, turtle2_listen_turtle1])

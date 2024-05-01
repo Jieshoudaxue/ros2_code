@@ -20,6 +20,10 @@ TurtleTfBroadcaster::TurtleTfBroadcaster(const rclcpp::NodeOptions & options)
 
 }
 
+// 小乌龟 TF 广播器的核心是通过订阅小乌龟的 Pose 信息，将 Pose 信息经过加工得到小乌龟相对 world 坐标系的 TF 坐标变换，
+// 坐标变换主要分为两部分，一是平移变换，二是旋转变换，然后通过 TF 广播器将 TF 信息广播出去。
+// 关于 Pose 信息，欧拉角以及四元数的理解，请参考：https://blog.csdn.net/cy1641395022/article/details/131236155
+// 关于计算过程的理解，请参考：https://blog.csdn.net/cy1641395022/article/details/131236155
 void TurtleTfBroadcaster::handle_turtle_pose(const std::shared_ptr<turtlesim::msg::Pose> msg) {
     geometry_msgs::msg::TransformStamped tf_stamped;
 
