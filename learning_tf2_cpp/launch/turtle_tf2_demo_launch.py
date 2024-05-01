@@ -6,12 +6,13 @@ from launch_ros.descriptions import ComposableNode
 from launch_ros.actions import Node
 
 def generate_launch_description():
+    # 启动turtlesim节点，这个是基础环境
     turtlesim_node = Node(
         package='turtlesim',
         executable='turtlesim_node',
         name='turtlesim_node'
     )
-
+    # 启动turtle1的tf广播节点，广播turtle1的tf
     turtle1_tf_broadcaster = ComposableNodeContainer(
             name='turtle1_tf_broadcaster',
             namespace='',
@@ -26,7 +27,7 @@ def generate_launch_description():
             ],
             output='screen',
     )
-
+    # 启动turtle2的tf广播节点，广播turtle2的tf
     turtle2_tf_broadcaster = ComposableNodeContainer(
             name='turtle2_tf_broadcaster',
             namespace='',
@@ -41,7 +42,7 @@ def generate_launch_description():
             ],
             output='screen',
     )
-
+    # 启动rviz2，加载turtlesim的 world 和两个小乌龟坐标系的可视化配置
     turtlesim_world_rviz_config = os.path.join(
         get_package_share_directory('learning_tf2_cpp'),
         'config',
@@ -53,7 +54,7 @@ def generate_launch_description():
         name='rviz2',
         arguments=['-d', turtlesim_world_rviz_config]
     )
-
+    # 启动tf监听节点，监听在 turtle2 坐标系下的 turtle1 的 tf，并转换为 turtle2 的控制指令
     turtle2_listen_turtle1 = ComposableNodeContainer(
             name='turtle2_listen_turtle1',
             namespace='',
