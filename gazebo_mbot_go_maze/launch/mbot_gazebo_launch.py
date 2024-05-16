@@ -15,7 +15,9 @@ def generate_launch_description():
     world_file_path = 'worlds/maze_room.world'    
     pkg_path = os.path.join(get_package_share_directory(package_name))
     world_path = os.path.join(pkg_path, world_file_path)  
-    
+    rviz_path = os.path.join(pkg_path, 'rviz/mbot_gazebo.rviz')
+    print(rviz_path)
+
     # Process the URDF file
     pkg_path = os.path.join(get_package_share_directory(package_name))
     xacro_file = os.path.join(pkg_path,'urdf','mbot_base.xacro')
@@ -52,9 +54,17 @@ def generate_launch_description():
                                    '-Y', spawn_yaw_val],
                         output='screen')
 
+
+    viz_node = Node(
+         package='rviz2',
+         executable='rviz2',
+         name='rviz2',
+         arguments=['-d', rviz_path])
+
     # Launch them all!
     return LaunchDescription([
         mbot,
         gazebo,
         spawn_entity,
+        viz_node
     ])
