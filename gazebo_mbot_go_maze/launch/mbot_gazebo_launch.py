@@ -11,20 +11,11 @@ from launch_ros.actions import Node
 import xacro
 
 def generate_launch_description():
-    # Check if we're told to use sim time
-    # use_sim_time = LaunchConfiguration('use_sim_time')
-
-
-
-    # Include the robot_state_publisher launch file, provided by our own package. Force sim time to be enabled
-    # !!! MAKE SURE YOU SET THE PACKAGE NAME CORRECTLY !!!
-
     package_name='gazebo_mbot_go_maze' #<--- CHANGE ME
     world_file_path = 'worlds/maze_room.world'    
     pkg_path = os.path.join(get_package_share_directory(package_name))
     world_path = os.path.join(pkg_path, world_file_path)  
     
-
     # Process the URDF file
     pkg_path = os.path.join(get_package_share_directory(package_name))
     xacro_file = os.path.join(pkg_path,'urdf','mbot_base.xacro')
@@ -37,12 +28,6 @@ def generate_launch_description():
         output='screen',
         parameters=[params]
     )
-
-    # mbot = IncludeLaunchDescription(
-    #             PythonLaunchDescriptionSource([os.path.join(
-    #                 get_package_share_directory(package_name),'launch','mbot_launch.py'
-    #             )]), launch_arguments={'use_sim_time': 'true', 'world':world_path}.items()
-    # )
 
     # Include the Gazebo launch file, provided by the gazebo_ros package
     gazebo = IncludeLaunchDescription(
@@ -66,8 +51,6 @@ def generate_launch_description():
                                    '-z', spawn_z_val,
                                    '-Y', spawn_yaw_val],
                         output='screen')
-
-
 
     # Launch them all!
     return LaunchDescription([

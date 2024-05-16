@@ -182,7 +182,7 @@
   </xacro:macro>
 
   <xacro:macro name="caster" params="prefix reflect">
-    <joint name="${prefix}_caster_joint" type="continuous">
+    <joint name="${prefix}_caster_joint" type="fixed">
       <origin xyz="${reflect*caster_joint_x} ${caster_joint_y} ${-caster_joint_z}" rpy="0 0 0" />
       <parent link="base_link"/>
       <child link="${prefix}_caster_link" />
@@ -225,27 +225,30 @@
     <gazebo>
         <plugin name="differential_drive_controller" 
                 filename="libgazebo_ros_diff_drive.so">
-            <rosDebugLevel>Debug</rosDebugLevel>
-            <publishWheelTF>true</publishWheelTF>
-            <robotNamespace>/</robotNamespace>
-            <publishTf>1</publishTf>
-            <publishWheelJointState>true</publishWheelJointState>
-            <alwaysOn>true</alwaysOn>
-            <updateRate>100.0</updateRate>
-            <legacyMode>true</legacyMode>
+            <ros_debug_level>Debug</ros_debug_level>
+            <robot_namespace>/</robot_namespace>
+            <publish_tf>1</publish_tf>
+            <publish_wheel_joint_state>true</publish_wheel_joint_state>
+            <always_on>true</always_on>
+            <update_rate>100.0</update_rate>
+            <legacy_mode>true</legacy_mode>
             <left_joint>left_wheel_joint</left_joint>
             <right_joint>right_wheel_joint</right_joint>
             <wheel_separation>${wheel_joint_y*2}</wheel_separation>
             <wheel_diameter>${2*wheel_radius}</wheel_diameter>
-            <broadcastTF>1</broadcastTF>
-            <wheelTorque>30</wheelTorque>
-            <wheelAcceleration>1.8</wheelAcceleration>
-            <commandTopic>cmd_vel</commandTopic>
-            <odometryFrame>odom</odometryFrame> 
-            <odometryTopic>odom</odometryTopic> 
-            <robotBaseFrame>base_footprint</robotBaseFrame>
+            <broadcast_TF>1</broadcast_TF>
+            <max_wheel_torque>30</max_wheel_torque>
+            <max_wheel_acceleration>1.8</max_wheel_acceleration>
+            <command_topic>cmd_vel</command_topic>
+            <odometry_frame>odom</odometry_frame>
+            <odometry_topic>odom</odometry_topic>
+            <robot_base_frame>base_footprint</robot_base_frame>
+            <publish_odom>true</publish_odom>
+            <publish_odom_tf>true</publish_odom_tf>
+            <publish_wheel_tf>true</publish_wheel_tf>
         </plugin>
     </gazebo> 
+
   </xacro:macro>
 
   <xacro:robot_base />  
