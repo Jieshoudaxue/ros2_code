@@ -182,7 +182,7 @@
   </xacro:macro>
 
   <xacro:macro name="caster" params="prefix reflect">
-    <joint name="${prefix}_caster_joint" type="fixed">
+    <joint name="${prefix}_caster_joint" type="continuous">
       <origin xyz="${reflect*caster_joint_x} ${caster_joint_y} ${-caster_joint_z}" rpy="0 0 0" />
       <parent link="base_link"/>
       <child link="${prefix}_caster_link" />
@@ -218,8 +218,9 @@
     <xacro:wheel prefix="left"  reflect="1"/>  
     <xacro:wheel prefix="right"  reflect="-1"/>  
 
-    <xacro:caster prefix="front"  reflect="1"/>  
-    <xacro:caster prefix="back"  reflect="-1"/>  
+    <!-- TODO: caster can not work , so delete it ! -->
+    <!-- <xacro:caster prefix="front"  reflect="1"/>
+    <xacro:caster prefix="back"  reflect="-1"/>   -->
 
     <!-- controller -->
     <gazebo>
