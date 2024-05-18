@@ -4,26 +4,18 @@ from ament_index_python.packages import get_package_share_directory
 
 
 from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription
+from launch.actions import IncludeLaunchDescription, TimerAction
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-
 from launch_ros.actions import Node
 import xacro
 
 def generate_launch_description():
-    # Check if we're told to use sim time
-    # use_sim_time = LaunchConfiguration('use_sim_time')
-
-
-
-    # Include the robot_state_publisher launch file, provided by our own package. Force sim time to be enabled
-    # !!! MAKE SURE YOU SET THE PACKAGE NAME CORRECTLY !!!
-
     package_name='gazebo_mbot_go_maze' #<--- CHANGE ME
     world_file_path = 'worlds/maze_room.world'    
     pkg_path = os.path.join(get_package_share_directory(package_name))
     world_path = os.path.join(pkg_path, world_file_path)  
-    
+    rviz_path = os.path.join(pkg_path, 'rviz/mbot_gazebo.rviz')
+    print(rviz_path)
 
     # Process the URDF file
     pkg_path = os.path.join(get_package_share_directory(package_name))
@@ -37,12 +29,6 @@ def generate_launch_description():
         output='screen',
         parameters=[params]
     )
-
-    # mbot = IncludeLaunchDescription(
-    #             PythonLaunchDescriptionSource([os.path.join(
-    #                 get_package_share_directory(package_name),'launch','mbot_launch.py'
-    #             )]), launch_arguments={'use_sim_time': 'true', 'world':world_path}.items()
-    # )
 
     # Include the Gazebo launch file, provided by the gazebo_ros package
     gazebo = IncludeLaunchDescription(
@@ -68,10 +54,19 @@ def generate_launch_description():
                         output='screen')
 
 
+    rviz_node = Node(
+         package='rviz2',
+         executable='rviz2',
+         name='rviz2',
+         arguments=['-d', rviz_path])
 
     # Launch them all!
     return LaunchDescription([
         mbot,
         gazebo,
         spawn_entity,
+        TimerAction(
+            period=3.0,
+            actions=[rviz_node],
+        )
     ])
